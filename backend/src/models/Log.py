@@ -1,0 +1,4 @@
+from src import db
+
+class Log(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
