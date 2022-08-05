@@ -19,8 +19,10 @@ class Account(db.Model):
     updated_at = db.Column(db.DateTime,default=datetime.utcnow(), onupdate=datetime.utcnow(), nullable=False)
 
     # relationship
-    users = db.relationship('User')
-    notifications = db.relationship('NotificationAccount')
+    users = db.relationship('User', backref='accounts', lazy=True)
+    # notifications = db.relationship('NotificationAccount')
+    notifications = db.relationship('Notification', secondary=notification_account, lazy='subquery',
+        backref=db.backref('accounts', lazy=True))
 
     def __init__(self, business_name, status):
         self.business_name = business_name

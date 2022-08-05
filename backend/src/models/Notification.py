@@ -10,7 +10,7 @@ class Notification(db.Model):
     created_at = db.Column(db.DateTime,default=datetime.utcnow(), nullable=False)
 
     # relationship
-    accounts = db.relationship('NotificationAccount')
+    # accounts = db.relationship('NotificationAccount')
 
     def __init__(self, message):
         self.message = message
