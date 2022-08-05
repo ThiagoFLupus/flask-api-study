@@ -40,6 +40,7 @@ def getAccountById(accountId):
     dataResponse = []
     statusResponse = 200
     if not accountId:
+        # chamar função para listar contas
         statusResponse = 403
     else:
         if request.method == 'GET':
