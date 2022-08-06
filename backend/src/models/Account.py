@@ -21,7 +21,7 @@ class Account(db.Model):
     # relationship
     users = db.relationship('User', backref='accounts', lazy=True)
     # notifications = db.relationship('NotificationAccount')
-    notifications = db.relationship('Notification', secondary='NotificationAccount', lazy='subquery',
+    notifications = db.relationship('Notification', secondary='notification_account', lazy='subquery',
         backref=db.backref('accounts', lazy=True))
 
     def __init__(self, business_name, status):

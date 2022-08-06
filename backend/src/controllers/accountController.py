@@ -51,10 +51,24 @@ def getAccountById(accountId):
     account = Account.query.filter_by(id=accountId).first()
 
     if account:
+        users = User.query.filter_by(account_id=account.id).all()
+        dataUser = []
+        if len(users) > 0:
+            for user in users:
+                userObj = {
+                    "email": user.email,
+                    "name": user.name,
+                    "password": user.password, 
+                    "permission_level": user.permission_level,
+                    "created_at": user.created_at
+                }
+                dataUser.append(userObj)
+
         data = {
             "id": account.id,
             "business_name": account.business_name,
             "status": account.status,
+            "users": dataUser,
             "created_at": account.created_at,
             "updated_at": account.updated_at
         }

@@ -19,7 +19,7 @@ class User(db.Model):
     created_at = db.Column(db.DateTime,default=datetime.utcnow(), nullable=False)
 
     # relationship     
-    accounts = db.relationship('Account', foreign_keys=account_id)    
+    # accounts = db.relationship('Account', foreign_keys=account_id)    
 
     def __init__(self, email, name, password, permission_level, account_id):
         self.email = email
