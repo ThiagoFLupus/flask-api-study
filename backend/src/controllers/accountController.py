@@ -45,6 +45,31 @@ def saveAccount(dataAccountRequest):
 
     return response
 
+def getAccounts():
+    response = None
+
+    accounts = Account.query.all()
+    dataAccount = []
+    if len(accounts) > 0:
+        for account in accounts:
+            accountObj = {
+                "business_name": account.business_name,
+                "status": account.status,
+            }
+            dataAccount.append(accountObj)
+        
+        response = {
+            'status': '200',
+            'message': 'success',
+            'data': dataAccount
+        }
+        return response
+    else:
+        response = {
+            'status': '200',
+            'message': 'success',
+            'data': []
+        }
 def getAccountById(accountId):
     response = None
 

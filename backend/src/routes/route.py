@@ -35,13 +35,17 @@ def account():
     
     return json.dumps(dataResponse), statusResponse, {'content-type': 'application/json'}
 
+@app.route("/account", defaults={'accountId': None}, methods=['GET'])
 @app.route("/account/<accountId>", methods=['GET', 'DELETE'])
 def getAccountById(accountId):
     dataResponse = []
     statusResponse = 200
     if not accountId:
         # chamar função para listar contas
-        statusResponse = 403
+        controllerResponse = accountController.getAccounts()
+        statusResponse = controllerResponse['status']
+        dataResponse = controllerResponse
+        return json.dumps(dataResponse), statusResponse, {'content-type': 'application/json'}
     else:
         if request.method == 'GET':
             # call controller 
